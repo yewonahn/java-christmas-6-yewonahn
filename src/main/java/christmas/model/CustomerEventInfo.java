@@ -2,20 +2,20 @@ package christmas.model;
 
 public class CustomerEventInfo {
     private final String orderMenu;
-    private final int totalOrderMoneyBeforeDiscount;
+    private final int totalOrderPriceBeforeDiscount;
     private final String giftMenu;
     private final String benefitDetail;
-    private final int totalBenefitMoney;
-    private final int estimatedPaymentMoneyAfterDiscount;
+    private final int totalBenefitPrice;
+    private final int totalPaymentPriceAfterDiscount;
     private final String decEventBadge;
 
-    public CustomerEventInfo(String orderMenu, int totalOrderMoneyBeforeDiscount, String giftMenu, String benefitDetail, int totalBenefitMoney, int estimatedPaymentMoneyAfterDiscount, String decEventBadge) {
+    public CustomerEventInfo(String orderMenu, int totalOrderPriceBeforeDiscount, String giftMenu, String benefitDetail, int totalBenefitPrice, int totalPaymentPriceAfterDiscount, String decEventBadge) {
         this.orderMenu = orderMenu;
-        this.totalOrderMoneyBeforeDiscount = totalOrderMoneyBeforeDiscount;
+        this.totalOrderPriceBeforeDiscount = totalOrderPriceBeforeDiscount;
         this.giftMenu = giftMenu;
         this.benefitDetail = benefitDetail;
-        this.totalBenefitMoney = totalBenefitMoney;
-        this.estimatedPaymentMoneyAfterDiscount = estimatedPaymentMoneyAfterDiscount;
+        this.totalBenefitPrice = totalBenefitPrice;
+        this.totalPaymentPriceAfterDiscount = totalPaymentPriceAfterDiscount;
         this.decEventBadge = decEventBadge;
     }
 }
