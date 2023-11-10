@@ -29,4 +29,13 @@ public enum Menu {
     public int getPrice() {
         return price;
     }
+    public static int getPriceByName(String name) {
+        for (Menu menu : Menu.values()) {
+            if (menu.getName().equals(name)) {
+                return menu.getPrice();
+            }
+        }
+        // 이름에 해당하는 메뉴가 없을 경우 예외처리 또는 기본값 반환
+        throw new IllegalArgumentException("Invalid menu name: " + name);
+    }
 }
