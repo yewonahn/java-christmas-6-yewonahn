@@ -8,4 +8,10 @@ public class EachBenefitDetail {
         this.eventName = eventName;
         this.benefitPrice = benefitPrice;
     }
+    public String getEventName() {
+        return eventName;
+    }
+    public int getBenefitPrice() {
+        return benefitPrice;
+    }
 }
