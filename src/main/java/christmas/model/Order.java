@@ -10,9 +10,19 @@ public class Order {
         this.orderMenu = orderMenu;
         this.orderQuantity = orderQuantity;
     }
-    public int getEachMenuTotalPrice () {
+    public String getOrderMenu() {
+        return orderMenu;
+    }
+    public int getOrderQuantity() {
+        return orderQuantity;
+    }
+    public int getEachMenuTotalPrice() {
         int menuPrice = Menu.getPriceByName(orderMenu);
         int eachMenuTotalPrice = menuPrice * orderQuantity;
         return eachMenuTotalPrice;
+    }
+    public String getCategory() {
+        String category = Menu.getCategoryByName(orderMenu);
+        return category;
     }
 }
