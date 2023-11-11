@@ -1,21 +1,69 @@
 package christmas.model;
 
-public class CustomerEventInfo {
-    private final String orderMenu;
-    private final int totalOrderPriceBeforeDiscount;
-    private final String giftMenu;
-    private final String benefitDetail;
-    private final int totalBenefitPrice;
-    private final int totalPaymentPriceAfterDiscount;
-    private final String decEventBadge;
+import christmas.service.CalculateBenefitAmount;
+import christmas.service.FillBenefitsDetailList;
 
-    public CustomerEventInfo(String orderMenu, int totalOrderPriceBeforeDiscount, String giftMenu, String benefitDetail, int totalBenefitPrice, int totalPaymentPriceAfterDiscount, String decEventBadge) {
-        this.orderMenu = orderMenu;
-        this.totalOrderPriceBeforeDiscount = totalOrderPriceBeforeDiscount;
-        this.giftMenu = giftMenu;
-        this.benefitDetail = benefitDetail;
-        this.totalBenefitPrice = totalBenefitPrice;
-        this.totalPaymentPriceAfterDiscount = totalPaymentPriceAfterDiscount;
-        this.decEventBadge = decEventBadge;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import static christmas.Application.*;
+
+public class CustomerEventInfo {
+    private List<Order> orders;
+    private int totalOrderPriceBeforeDiscount;
+    private String giftMenu;
+    private List<EachBenefitDetail> benefitDetails;
+    private int totalBenefitPrice;
+    private int totalPaymentPriceAfterDiscount;
+    private String decEventBadge;
+
+    public CustomerEventInfo() {
+        setOrderMenu();
+        setTotalOrderPriceBeforeDiscount();
+        setGiftMenu();
+        setBenefitDetails();
+        setTotalBenefitPrice();
+        setTotalPaymentPriceAfterDiscount();
+        setDecEventBadge();
+    }
+    public void setOrderMenu() {
+        orders = customerInputInfo.getOrders();
+    }
+    private void setTotalOrderPriceBeforeDiscount() {
+        totalOrderPriceBeforeDiscount = customerInputInfo.getTotalPriceBeforeDiscount();
+    }
+    private void setGiftMenu() {
+        if(customerInputInfo.checkPresent()) {
+            giftMenu = "샴페인 1개";
+            return;
+        }
+        giftMenu = "없음";
+    }
+    private void setBenefitDetails() {
+        if (customerInputInfo.checkPriceCondition()) {
+            FillBenefitsDetailList.christmas(this.benefitDetails);
+            FillBenefitsDetailList.weekday(this.benefitDetails);
+            FillBenefitsDetailList.weekend(this.benefitDetails);
+            FillBenefitsDetailList.specialDay(this.benefitDetails);
+            FillBenefitsDetailList.present(this.benefitDetails);
+            return;
+        }
+        EachBenefitDetail eachBenefitDetail = new EachBenefitDetail("없음", 0);
+        benefitDetails = new ArrayList<>(Arrays.asList(eachBenefitDetail));
+    }
+    private void setTotalBenefitPrice() {
+        totalBenefitPrice = 0;
+        if (customerInputInfo.checkPriceCondition()) {
+            totalBenefitPrice = CalculateBenefitAmount.totalBenefit();
+        }
+    }
+    private void setTotalPaymentPriceAfterDiscount() {
+        totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount() - CalculateBenefitAmount.totalBenefit();
+    }
+    private void setDecEventBadge() {
+        int totalBenefit = totalBenefitPrice;
+        Badge badge = new Badge(totalBenefit);
+        decEventBadge = badge.getState();
     }
 }
