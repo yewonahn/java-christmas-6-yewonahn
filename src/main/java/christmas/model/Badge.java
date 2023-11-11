@@ -5,6 +5,9 @@ import christmas.service.CalculateBenefitAmount;
 public class Badge {
     private String state;
 
+    public Badge(int totalBenefit) {
+        setState(totalBenefit);
+    }
     public String getState() {
         return state;
     }
