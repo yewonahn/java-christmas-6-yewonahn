@@ -15,8 +15,8 @@ public class CustomerInputInfo {
         this.visitDate = visitDate;
         this.dayOfTheWeek = GetDayOfTheWeek.getDayOfTheWeek(visitDate);
     }
-    public boolean checkChristmas() {
-        if (visitDate == 25) {
+    public boolean checkChristmasDDay() {
+        if (visitDate <= 25) {
             return true;
         }
         return false;
