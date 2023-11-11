@@ -41,8 +41,9 @@ public class CustomerEventInfo {
         giftMenu = "없음";
     }
     private void setBenefitDetails() {
+        benefitDetails = new ArrayList<>();
         if (customerInputInfo.checkPriceCondition()) {
-            FillBenefitsDetailList.christmas(this.benefitDetails);
+            FillBenefitsDetailList.christmasDDay(this.benefitDetails);
             FillBenefitsDetailList.weekday(this.benefitDetails);
             FillBenefitsDetailList.weekend(this.benefitDetails);
             FillBenefitsDetailList.specialDay(this.benefitDetails);
@@ -59,11 +60,32 @@ public class CustomerEventInfo {
         }
     }
     private void setTotalPaymentPriceAfterDiscount() {
-        totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount() - CalculateBenefitAmount.totalBenefit();
+        totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount() - CalculateBenefitAmount.totalDiscount();
     }
     private void setDecEventBadge() {
         int totalBenefit = totalBenefitPrice;
         Badge badge = new Badge(totalBenefit);
         decEventBadge = badge.getState();
+    }
+    public List<Order> getOrders() {
+        return orders;
+    }
+    public int getTotalOrderPriceBeforeDiscount() {
+        return totalOrderPriceBeforeDiscount;
+    }
+    public String getGiftMenu() {
+        return giftMenu;
+    }
+    public List<EachBenefitDetail> getBenefitDetails() {
+        return benefitDetails;
+    }
+    public int getTotalBenefitPrice() {
+        return totalBenefitPrice;
+    }
+    public int getTotalPaymentPriceAfterDiscount() {
+        return totalPaymentPriceAfterDiscount;
+    }
+    public String getDecEventBadge() {
+        return decEventBadge;
     }
 }
