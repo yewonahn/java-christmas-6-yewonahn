@@ -5,10 +5,6 @@ import christmas.service.CalculateBenefitAmount;
 public class Badge {
     private String state;
 
-    public Badge(String state) {
-        this.state = state;
-    }
-
     public String getState() {
         return state;
     }
@@ -26,5 +22,6 @@ public class Badge {
             state = "별";
             return;
         }
+        state = "없음";
     }
 }
