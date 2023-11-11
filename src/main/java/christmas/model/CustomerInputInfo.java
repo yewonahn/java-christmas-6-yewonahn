@@ -21,6 +21,18 @@ public class CustomerInputInfo {
         }
         return false;
     }
+    public boolean checkWeekday() {
+        if (dayOfTheWeek == "weekday") {
+            return true;
+        }
+        return false;
+    }
+    public boolean checkWeekend() {
+        if (dayOfTheWeek == "weekend") {
+            return true;
+        }
+        return false;
+    }
     public boolean checkSpecialDay() {
         if (visitDate % 7 == 3 || visitDate == 25) {
             return true;
@@ -40,5 +52,39 @@ public class CustomerInputInfo {
             totalPriceBeforeDiscount += order.getEachMenuTotalPrice();
         }
         return totalPriceBeforeDiscount;
+    }
+    public boolean checkPriceCondition() {
+        int totalPriceBeforeDiscount = getTotalPriceBeforeDiscount();
+        if(totalPriceBeforeDiscount >= 10000) {
+            return true;
+        }
+        return false;
+    }
+    public boolean checkOnlyDrink() {
+        for(Order order : orders) {
+            if(!order.getCategory().equals("<음료>")) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean checkAmountOfMenu() {
+        int amountOfMenu = 0;
+        for(Order order : orders) {
+            amountOfMenu += order.getOrderQuantity();
+        }
+        if(amountOfMenu <= 20) {
+            return true;
+        }
+        return false;
+    }
+    public List<Order> getOrders() {
+        return orders;
+    }
+    public int getVisitDate() {
+        return visitDate;
+    }
+    public String getDayOfTheWeek() {
+        return dayOfTheWeek;
     }
 }
