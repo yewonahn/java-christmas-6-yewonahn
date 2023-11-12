@@ -52,4 +52,12 @@ public enum Menu {
         // 이름에 해당하는 카테고리가 없을 경우 예외처리 또는 기본값 반환
         throw new IllegalArgumentException("Invalid menu name: " + name);
     }
+    public static boolean checkRightName(String name) {
+        for (Menu menu : Menu.values()) {
+            if (menu.getName().equals(name)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
