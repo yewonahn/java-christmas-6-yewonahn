@@ -2,37 +2,42 @@ package christmas.view;
 
 import christmas.Application;
 import christmas.model.Order;
+import christmas.service.MakeOrders;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static christmas.Application.validator;
+import static christmas.util.CheckValidation.*;
 
 public class InputView {
     public static int inputVisitDate() {
         String stringVisitDate = readLine();
+
         try {
-            validator.checkDateType(stringVisitDate);
+            checkDateType(stringVisitDate);
         } catch (IllegalArgumentException e) {
-            System.out.println(e.getMessage());
+            System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
             return inputVisitDate();
         }
+
         int visitDate = Integer.parseInt(stringVisitDate);
+
         return visitDate;
     }
+
     public static List<Order> inputOrderMenu() {
         String[] pairs = readLine().split(",");
-        List<Order> orders = new ArrayList<>();
-        for (String pair : pairs) {
-            String[] parts = pair.split("-");
-            String orderMenu = parts[0];
-            int orderQuantity = Integer.parseInt(parts[1]);
+        List<Order> orders = MakeOrders.make(pairs);
 
-            Order order = new Order(orderMenu, orderQuantity);
-            orders.add(order);
+        try {
+            checkMenuValid(orders);
+            checkMenuDuplication(orders);
+        } catch (IllegalArgumentException e) {
+            System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            return inputOrderMenu();
         }
 
-        return validator.checkInputOrderMenu(orders);
+        return orders;
     }
 }
