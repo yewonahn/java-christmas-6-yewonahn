@@ -7,10 +7,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static christmas.Application.validator;
 
 public class InputView {
     public static int inputVisitDate() {
         String stringVisitDate = readLine();
+        try {
+            validator.checkDateType(stringVisitDate);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+            return inputVisitDate();
+        }
         int visitDate = Integer.parseInt(stringVisitDate);
         return visitDate;
     }
@@ -25,6 +32,7 @@ public class InputView {
             Order order = new Order(orderMenu, orderQuantity);
             orders.add(order);
         }
-        return orders;
+
+        return validator.checkInputOrderMenu(orders);
     }
 }
