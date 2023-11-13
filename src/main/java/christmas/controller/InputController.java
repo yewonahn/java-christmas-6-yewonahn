@@ -1,16 +1,14 @@
-package christmas.view;
+package christmas.controller;
 
-import christmas.Application;
 import christmas.model.Order;
 import christmas.service.MakeOrders;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static christmas.util.CheckValidation.*;
 
-public class InputView {
+public class InputController {
     public static int inputVisitDate() {
         String stringVisitDate = readLine();
 
@@ -38,6 +36,6 @@ public class InputView {
             return inputOrderMenu();
         }
 
-        return orders;
+        return checkConstructions(orders);
     }
 }
