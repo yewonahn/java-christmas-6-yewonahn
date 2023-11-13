@@ -20,13 +20,13 @@ public class CustomerEventInfo {
     private String decEventBadge;
     private final static String ONE_CHAMPAGNE = "샴페인 1개";
 
-    public CustomerEventInfo() {
+    public CustomerEventInfo(List<EachBenefitDetail> benefitDetails, int totalBenefitPrice, int totalPaymentPriceAfterDiscount) {
         setOrderMenu();
         setTotalOrderPriceBeforeDiscount();
         setGiftMenu();
-        setBenefitDetails();
-        setTotalBenefitPrice();
-        setTotalPaymentPriceAfterDiscount();
+        this.benefitDetails = benefitDetails;
+        this.totalBenefitPrice = totalBenefitPrice;
+        this.totalPaymentPriceAfterDiscount = totalPaymentPriceAfterDiscount;
         setDecEventBadge();
     }
     public void setOrderMenu() {
@@ -41,31 +41,6 @@ public class CustomerEventInfo {
             return;
         }
         giftMenu = NO.getOutputMessage();
-    }
-    private void setBenefitDetails() {
-        benefitDetails = new ArrayList<>();
-        if (customerInputInfo.checkPriceCondition()) {
-            FillBenefitsDetailList.christmasDDay(this.benefitDetails);
-            FillBenefitsDetailList.weekday(this.benefitDetails);
-            FillBenefitsDetailList.weekend(this.benefitDetails);
-            FillBenefitsDetailList.specialDay(this.benefitDetails);
-            FillBenefitsDetailList.present(this.benefitDetails);
-            return;
-        }
-        EachBenefitDetail eachBenefitDetail = new EachBenefitDetail(NO.getOutputMessage(), 0);
-        benefitDetails = new ArrayList<>(Arrays.asList(eachBenefitDetail));
-    }
-    private void setTotalBenefitPrice() {
-        totalBenefitPrice = 0;
-        if (customerInputInfo.checkPriceCondition()) {
-            totalBenefitPrice = CalculateBenefitAmount.totalBenefit();
-        }
-    }
-    private void setTotalPaymentPriceAfterDiscount() {
-        totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount();
-        if (customerInputInfo.checkPriceCondition()) {
-            totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount() - CalculateBenefitAmount.totalDiscount();
-        }
     }
     private void setDecEventBadge() {
         int totalBenefit = totalBenefitPrice;

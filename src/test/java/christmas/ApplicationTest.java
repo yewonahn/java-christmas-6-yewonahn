@@ -53,4 +53,11 @@ class ApplicationTest extends NsTest {
     protected void runMain() {
         Application.main(new String[]{});
     }
+
+    @Test
+    void testCreateOrderList() {
+        String[] menuInput = {"티본스테이크-1", "바비큐립-1", "초코케이크-2", "제로콜라-1"};
+        int visitDate = 3;
+
+    }
 }

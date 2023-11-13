@@ -2,10 +2,12 @@ package christmas.controller;
 
 import christmas.model.CustomerEventInfo;
 import christmas.model.CustomerInputInfo;
+import christmas.model.EachBenefitDetail;
 import christmas.model.Order;
 
 import java.util.List;
 
+import static christmas.controller.SetController.*;
 import static christmas.view.EventPlannerView.*;
 
 public class ChristmasController {
@@ -31,7 +33,12 @@ public class ChristmasController {
     }
     public static void createInfoClass(List<Order> orders, int visitDate) {
         customerInputInfo = new CustomerInputInfo(orders, visitDate);
-        customerEventInfo = new CustomerEventInfo();
+
+        List<EachBenefitDetail> benefitDetails = setCustomerEventInfo(customerInputInfo);
+        int totalBenefitPrice = setTotalBenefitPrice(customerInputInfo);
+        int totalPaymentPriceAfterDiscount = setTotalPaymentPriceAfterDiscount(customerInputInfo);
+
+        customerEventInfo = new CustomerEventInfo(benefitDetails, totalBenefitPrice, totalPaymentPriceAfterDiscount);
     }
 
     public static void printEventPlannerView() {
