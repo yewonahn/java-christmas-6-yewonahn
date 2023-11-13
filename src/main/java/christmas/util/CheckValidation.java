@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static christmas.controller.InputController.inputOrderMenu;
+import static christmas.enums.ErrorMessage.MAX_MENU_ERROR_MSG;
+import static christmas.enums.ErrorMessage.ONLY_DRINK_ERROR_MSG;
 import static christmas.util.CheckRestrictions.maxAmountOfMenu;
 import static christmas.util.CheckRestrictions.orderOnlyDrink;
 
@@ -51,12 +53,12 @@ public class CheckValidation {
     }
     public static void checkDrinkConstruction(List<Order> orders) {
         if(! orderOnlyDrink(orders)) {
-            throw new IllegalArgumentException("[ERROR] 음료만 주문 시, 주문할 수 없습니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(ONLY_DRINK_ERROR_MSG.getErrorMessage());
         }
     }
     public static void checkAmountOfMenuConstruction(List<Order> orders) {
         if(! maxAmountOfMenu(orders)) {
-            throw new IllegalArgumentException("[ERROR] 메뉴는 한번에 최대 20개까지만 주문할 수 있습니다. 다시 입력해 주세요.");
+            throw new IllegalArgumentException(MAX_MENU_ERROR_MSG.getErrorMessage());
         }
     }
     public static List<Order> checkConstructions(List<Order> orders) {

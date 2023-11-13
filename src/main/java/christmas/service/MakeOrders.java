@@ -5,6 +5,7 @@ import christmas.model.Order;
 import java.util.ArrayList;
 import java.util.List;
 
+import static christmas.enums.ErrorMessage.ORDER_ERROR_MSG;
 import static christmas.util.CheckValidation.*;
 import static christmas.controller.InputController.inputOrderMenu;
 
@@ -16,7 +17,7 @@ public class MakeOrders {
             try {
                 checkMenuAmount(parts[1]);
             } catch (IllegalArgumentException e) {
-                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                System.out.println(ORDER_ERROR_MSG.getErrorMessage());
                 return inputOrderMenu();
             }
             Order order = new Order(parts[0], Integer.parseInt(parts[1]));

@@ -1,5 +1,7 @@
 package christmas.model;
 
+import static christmas.enums.BadgeState.*;
+
 public class Badge {
     private String state;
 
@@ -12,17 +14,17 @@ public class Badge {
 
     public void setState(int totalBenefit) {
         if (totalBenefit >= 20000) {
-            state = "산타";
+            state = SANTA.getBadgeState();
             return;
         }
         if (totalBenefit >= 10000) {
-            state = "트리";
+            state = TREE.getBadgeState();
             return;
         }
         if (totalBenefit >= 5000) {
-            state = "별";
+            state = STAR.getBadgeState();
             return;
         }
-        state = "없음";
+        state = NO.getBadgeState();
     }
 }
