@@ -4,7 +4,7 @@ import christmas.model.EachBenefitDetail;
 
 import java.util.List;
 
-import static christmas.Application.customerInputInfo;
+import static christmas.controller.ChristmasController.customerInputInfo;
 
 public class FillBenefitsDetailList {
     public static void christmasDDay(List<EachBenefitDetail> benefitDetails) {
