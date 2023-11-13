@@ -5,7 +5,7 @@ import christmas.model.Order;
 
 import java.util.List;
 
-import static christmas.Application.customerInputInfo;
+import static christmas.controller.ChristmasController.customerInputInfo;
 
 public class CalculateBenefitAmount {
     public static int christmasDDay (CustomerInputInfo customerInputInfo) {
