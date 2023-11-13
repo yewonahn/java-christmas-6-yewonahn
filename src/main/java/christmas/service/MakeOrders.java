@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static christmas.util.CheckValidation.*;
-import static christmas.view.InputView.inputOrderMenu;
+import static christmas.controller.InputController.inputOrderMenu;
 
 public class MakeOrders {
     public static List<Order> make (String[] pairs) {
