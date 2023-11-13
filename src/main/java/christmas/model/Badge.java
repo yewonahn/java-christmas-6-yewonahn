@@ -1,7 +1,5 @@
 package christmas.model;
 
-import christmas.service.CalculateBenefitAmount;
-
 public class Badge {
     private String state;
 
