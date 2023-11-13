@@ -51,20 +51,20 @@ public class CalculateBenefitAmount {
     }
     public static int totalBenefit() {
         int totalBenefit = 0;
-        if (customerInputInfo.checkWeekday() || customerInputInfo.checkPriceCondition()) {
+        if (customerInputInfo.checkWeekday() && customerInputInfo.checkPriceCondition()) {
             totalBenefit = CalculateBenefitAmount.christmasDDay(customerInputInfo) + CalculateBenefitAmount.weekday(customerInputInfo) + CalculateBenefitAmount.specialDay(customerInputInfo) + CalculateBenefitAmount.present(customerInputInfo);
         }
-        if (customerInputInfo.checkWeekend() || customerInputInfo.checkPriceCondition()) {
+        if (customerInputInfo.checkWeekend() && customerInputInfo.checkPriceCondition()) {
             totalBenefit = CalculateBenefitAmount.christmasDDay(customerInputInfo) + CalculateBenefitAmount.weekend(customerInputInfo) + CalculateBenefitAmount.specialDay(customerInputInfo) + CalculateBenefitAmount.present(customerInputInfo);
         }
         return totalBenefit;
     }
     public static int totalDiscount() {
         int totalDiscount = 0;
-        if (customerInputInfo.checkWeekday() || customerInputInfo.checkPriceCondition()) {
+        if (customerInputInfo.checkWeekday() && customerInputInfo.checkPriceCondition()) {
             totalDiscount = CalculateBenefitAmount.christmasDDay(customerInputInfo) + CalculateBenefitAmount.weekday(customerInputInfo) + CalculateBenefitAmount.specialDay(customerInputInfo);
         }
-        if (customerInputInfo.checkWeekend() || customerInputInfo.checkPriceCondition()) {
+        if (customerInputInfo.checkWeekend() && customerInputInfo.checkPriceCondition()) {
             totalDiscount = CalculateBenefitAmount.christmasDDay(customerInputInfo) + CalculateBenefitAmount.weekend(customerInputInfo) + CalculateBenefitAmount.specialDay(customerInputInfo);
         }
         return totalDiscount;
