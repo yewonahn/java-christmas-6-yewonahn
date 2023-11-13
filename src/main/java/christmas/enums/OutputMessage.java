@@ -13,10 +13,11 @@ public enum OutputMessage {
     TITLE_GIFT_MENU("<증정 메뉴>"),
     ANSWER_STRING("%s\n"),
     TITLE_BENEFIT_DETAIL("<혜택 내역>"),
-    ANSWER_ABSENCE("없음"),
+    NO("없음"),
     ANSWER_BENEFIT_PRICE("%s: -%s원\n"),
     TITLE_TOTAL_BENEFIT("<총혜택 금액>"),
-    ANSWER_TOTAL_BENEFIT("-%s원\n"),
+    ANSWER_MINUS_TOTAL_BENEFIT("-%s원\n"),
+    ANSWER_TOTAL_BENEFIT("%s원\n"),
     TITLE_PAYMENT_PRICE_AFTER_DISCOUNT("<할인 후 예상 결제 금액>"),
     TITLE_EVENT_BADGE("<12월 이벤트 배지>");
 
@@ -26,7 +27,7 @@ public enum OutputMessage {
         this.message = message;
     }
 
-    public String getMessage() {
+    public String getOutputMessage() {
         return message;
     }
 }

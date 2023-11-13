@@ -8,25 +8,26 @@ import christmas.model.Order;
 import java.text.DecimalFormat;
 
 import static christmas.controller.ChristmasController.customerInputInfo;
+import static christmas.enums.OutputMessage.*;
 
 
 public class OutputController {
-    public static DecimalFormat df = new DecimalFormat("#,###");
+    public static DecimalFormat df = new DecimalFormat(CUT_TO_THOUSAND.getOutputMessage());
 
     public static void startingComment() {
-        System.out.println("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.");
+        System.out.println(COMMENT_STARTING.getOutputMessage());
     }
 
     public static void askVisitDate() {
-        System.out.println("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)");
+        System.out.println(COMMENT_DATE.getOutputMessage());
     }
 
     public static void askOrderMenu() {
-        System.out.println("주문하실 메뉴를 메뉴와 개수를 알려 주세요. (e.g. 해산물파스타-2,레드와인-1,초코케이크-1)");
+        System.out.println(COMMENT_ORDER.getOutputMessage());
     }
 
     public static void benefitPreviewComment(CustomerInputInfo customerInputInfo) {
-        System.out.printf("12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n", customerInputInfo.getVisitDate());
+        System.out.printf(COMMENT_BENEFIT_PREVIEW.getOutputMessage(), customerInputInfo.getVisitDate());
     }
 
     public static void printEnter() {
@@ -34,49 +35,53 @@ public class OutputController {
     }
 
     public static void printOrderMenu(CustomerEventInfo customerEventInfo) {
-        System.out.println("<주문 메뉴>");
+        System.out.println(TITLE_ORDER.getOutputMessage());
         for(Order order : customerEventInfo.getOrders()) {
-            System.out.printf("%s %d개\n", order.getOrderMenu(), order.getOrderQuantity());
+            System.out.printf(ANSWER_MENU_QUANTITY.getOutputMessage(), order.getOrderMenu(), order.getOrderQuantity());
         }
     }
 
     public static void printTotalOrderPriceBeforeDiscount(CustomerEventInfo customerEventInfo) {
-        System.out.println("<할인 전 총주문 금액>");
+        System.out.println(TITLE_TOTAL_MENU_PRICE.getOutputMessage());
         String price = df.format(customerEventInfo.getTotalOrderPriceBeforeDiscount());
-        System.out.printf("%s원\n", price);
+        System.out.printf(ANSWER_WON.getOutputMessage(), price);
     }
 
     public static void printGiftMenu(CustomerEventInfo customerEventInfo) {
-        System.out.println("<증정 메뉴>");
-        System.out.printf("%s\n", customerEventInfo.getGiftMenu());
+        System.out.println(TITLE_GIFT_MENU.getOutputMessage());
+        System.out.printf(ANSWER_STRING.getOutputMessage(), customerEventInfo.getGiftMenu());
     }
 
     public static void printBenefitDetails(CustomerEventInfo customerEventInfo) {
-        System.out.println("<혜택 내역>");
+        System.out.println(TITLE_BENEFIT_DETAIL.getOutputMessage());
         if(!customerInputInfo.checkPriceCondition()) {
-            System.out.println("없음");
+            System.out.println(NO.getOutputMessage());
             return;
         }
         for(EachBenefitDetail eachBenefitDetail : customerEventInfo.getBenefitDetails()) {
             String price = df.format(eachBenefitDetail.getBenefitPrice());
-            System.out.printf("%s: -%s원\n", eachBenefitDetail.getEventName(), price);
+            System.out.printf(ANSWER_BENEFIT_PRICE.getOutputMessage(), eachBenefitDetail.getEventName(), price);
         }
     }
 
     public static void printTotalBenefitPrice(CustomerEventInfo customerEventInfo) {
-        System.out.println("<총혜택 금액>");
+        System.out.println(TITLE_TOTAL_BENEFIT.getOutputMessage());
         String price = df.format(customerEventInfo.getTotalBenefitPrice());
-        System.out.printf("-%s원\n", price);
+        if (customerInputInfo.checkPriceCondition()) {
+            System.out.printf(ANSWER_MINUS_TOTAL_BENEFIT.getOutputMessage(), price);
+            return;
+        }
+        System.out.printf(ANSWER_TOTAL_BENEFIT.getOutputMessage(), price);
     }
 
     public static void printTotalPaymentPriceAfterDiscount(CustomerEventInfo customerEventInfo) {
-        System.out.println("<할인 후 예상 결제 금액>");
+        System.out.println(TITLE_PAYMENT_PRICE_AFTER_DISCOUNT.getOutputMessage());
         String price = df.format(customerEventInfo.getTotalPaymentPriceAfterDiscount());
-        System.out.printf("%s원\n", price);
+        System.out.printf(ANSWER_WON.getOutputMessage(), price);
     }
 
     public static void printDecEventBadge(CustomerEventInfo customerEventInfo) {
-        System.out.println("<12월 이벤트 배지>");
-        System.out.printf("%s\n", customerEventInfo.getDecEventBadge());
+        System.out.println(TITLE_EVENT_BADGE.getOutputMessage());
+        System.out.printf(ANSWER_STRING.getOutputMessage(), customerEventInfo.getDecEventBadge());
     }
 }

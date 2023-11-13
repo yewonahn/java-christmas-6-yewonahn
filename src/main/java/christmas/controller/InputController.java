@@ -6,6 +6,8 @@ import christmas.service.MakeOrders;
 import java.util.List;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
+import static christmas.enums.ErrorMessage.DATE_ERROR_MSG;
+import static christmas.enums.ErrorMessage.ORDER_ERROR_MSG;
 import static christmas.util.CheckValidation.*;
 
 public class InputController {
@@ -15,7 +17,7 @@ public class InputController {
         try {
             checkDateType(stringVisitDate);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            System.out.println(DATE_ERROR_MSG.getErrorMessage());
             return inputVisitDate();
         }
 
@@ -32,7 +34,7 @@ public class InputController {
             checkMenuValid(orders);
             checkMenuDuplication(orders);
         } catch (IllegalArgumentException e) {
-            System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            System.out.println(ORDER_ERROR_MSG.getErrorMessage());
             return inputOrderMenu();
         }
 
