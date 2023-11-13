@@ -1,4 +1,4 @@
-package christmas.view;
+package christmas.controller;
 
 import christmas.model.CustomerEventInfo;
 import christmas.model.CustomerInputInfo;
@@ -7,9 +7,10 @@ import christmas.model.Order;
 
 import java.text.DecimalFormat;
 
-import static christmas.Application.customerInputInfo;
+import static christmas.controller.ChristmasController.customerInputInfo;
 
-public class OutputView {
+
+public class OutputController {
     public static DecimalFormat df = new DecimalFormat("#,###");
 
     public static void startingComment() {
