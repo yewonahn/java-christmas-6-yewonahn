@@ -1,6 +1,5 @@
 package christmas.model;
 
-import christmas.enums.Menu;
 import christmas.service.GetDayOfTheWeek;
 
 import java.util.List;
@@ -60,31 +59,10 @@ public class CustomerInputInfo {
         }
         return false;
     }
-    public boolean checkOnlyDrink() {
-        for(Order order : orders) {
-            if(!order.getCategory().equals("<음료>")) {
-                return true;
-            }
-        }
-        return false;
-    }
-    public boolean checkAmountOfMenu() {
-        int amountOfMenu = 0;
-        for(Order order : orders) {
-            amountOfMenu += order.getOrderQuantity();
-        }
-        if(amountOfMenu <= 20) {
-            return true;
-        }
-        return false;
-    }
     public List<Order> getOrders() {
         return orders;
     }
     public int getVisitDate() {
         return visitDate;
-    }
-    public String getDayOfTheWeek() {
-        return dayOfTheWeek;
     }
 }
