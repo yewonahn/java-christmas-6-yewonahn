@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static christmas.Application.*;
+import static christmas.controller.ChristmasController.customerInputInfo;
+
 
 public class CustomerEventInfo {
     private List<Order> orders;
