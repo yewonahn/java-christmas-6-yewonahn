@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static christmas.controller.ChristmasController.customerInputInfo;
-
+import static christmas.enums.OutputMessage.NO;
 
 public class CustomerEventInfo {
     private List<Order> orders;
@@ -18,6 +18,7 @@ public class CustomerEventInfo {
     private int totalBenefitPrice;
     private int totalPaymentPriceAfterDiscount;
     private String decEventBadge;
+    private final static String ONE_CHAMPAGNE = "샴페인 1개";
 
     public CustomerEventInfo() {
         setOrderMenu();
@@ -36,10 +37,10 @@ public class CustomerEventInfo {
     }
     private void setGiftMenu() {
         if(customerInputInfo.checkPresent()) {
-            giftMenu = "샴페인 1개";
+            giftMenu = ONE_CHAMPAGNE;
             return;
         }
-        giftMenu = "없음";
+        giftMenu = NO.getOutputMessage();
     }
     private void setBenefitDetails() {
         benefitDetails = new ArrayList<>();
@@ -51,7 +52,7 @@ public class CustomerEventInfo {
             FillBenefitsDetailList.present(this.benefitDetails);
             return;
         }
-        EachBenefitDetail eachBenefitDetail = new EachBenefitDetail("없음", 0);
+        EachBenefitDetail eachBenefitDetail = new EachBenefitDetail(NO.getOutputMessage(), 0);
         benefitDetails = new ArrayList<>(Arrays.asList(eachBenefitDetail));
     }
     private void setTotalBenefitPrice() {
@@ -61,7 +62,10 @@ public class CustomerEventInfo {
         }
     }
     private void setTotalPaymentPriceAfterDiscount() {
-        totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount() - CalculateBenefitAmount.totalDiscount();
+        totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount();
+        if (customerInputInfo.checkPriceCondition()) {
+            totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount() - CalculateBenefitAmount.totalDiscount();
+        }
     }
     private void setDecEventBadge() {
         int totalBenefit = totalBenefitPrice;

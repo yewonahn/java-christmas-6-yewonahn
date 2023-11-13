@@ -4,6 +4,9 @@ import christmas.service.GetDayOfTheWeek;
 
 import java.util.List;
 
+import static christmas.enums.EventName.WEEKDAY;
+import static christmas.enums.EventName.WEEKEND;
+
 public class CustomerInputInfo {
     private final List<Order> orders;
     private final int visitDate;
@@ -21,13 +24,13 @@ public class CustomerInputInfo {
         return false;
     }
     public boolean checkWeekday() {
-        if (dayOfTheWeek == "weekday") {
+        if (dayOfTheWeek == WEEKDAY.getEventName()) {
             return true;
         }
         return false;
     }
     public boolean checkWeekend() {
-        if (dayOfTheWeek == "weekend") {
+        if (dayOfTheWeek == WEEKEND.getEventName()) {
             return true;
         }
         return false;
