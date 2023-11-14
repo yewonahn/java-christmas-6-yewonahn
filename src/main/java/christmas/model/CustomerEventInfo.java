@@ -1,10 +1,5 @@
 package christmas.model;
 
-import christmas.service.CalculateBenefitAmount;
-import christmas.service.FillBenefitsDetailList;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static christmas.controller.ChristmasController.customerInputInfo;
