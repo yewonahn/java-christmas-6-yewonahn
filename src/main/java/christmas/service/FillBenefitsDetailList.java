@@ -1,5 +1,6 @@
 package christmas.service;
 
+import christmas.domain.CalculatePrice;
 import christmas.model.CustomerInputInfo;
 import christmas.model.EachBenefitDetail;
 
