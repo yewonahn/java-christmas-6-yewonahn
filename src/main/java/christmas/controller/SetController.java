@@ -1,17 +1,16 @@
 package christmas.controller;
 
-import christmas.model.CustomerEventInfo;
 import christmas.model.CustomerInputInfo;
 import christmas.model.EachBenefitDetail;
-import christmas.service.CalculateBenefitAmount;
+import christmas.service.CalculatePrice;
 import christmas.service.FillBenefitsDetailList;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static christmas.controller.ChristmasController.customerInputInfo;
 import static christmas.enums.OutputMessage.NO;
+import static christmas.service.CalculatePrice.totalPaymentPriceAfterDiscount;
 
 public class SetController {
     public static List<EachBenefitDetail> setCustomerEventInfo(CustomerInputInfo customerInputInfo) {
@@ -29,17 +28,13 @@ public class SetController {
         return benefitDetails;
     }
     public static int setTotalBenefitPrice(CustomerInputInfo customerInputInfo) {
-        int totalBenefitPrice = 0;
-        if (customerInputInfo.checkPriceCondition()) {
-            totalBenefitPrice = CalculateBenefitAmount.totalBenefit();
-        }
+        int totalBenefitPrice = CalculatePrice.totalBenefit(customerInputInfo);
+
         return totalBenefitPrice;
     }
     public static int setTotalPaymentPriceAfterDiscount(CustomerInputInfo customerInputInfo) {
-        int totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount();
-        if (customerInputInfo.checkPriceCondition()) {
-            totalPaymentPriceAfterDiscount = customerInputInfo.getTotalPriceBeforeDiscount() - CalculateBenefitAmount.totalDiscount();
-        }
+        int totalPaymentPriceAfterDiscount = totalPaymentPriceAfterDiscount(customerInputInfo);
+
         return totalPaymentPriceAfterDiscount;
     }
 
