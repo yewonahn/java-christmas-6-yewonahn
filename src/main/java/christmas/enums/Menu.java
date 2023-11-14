@@ -41,7 +41,7 @@ public enum Menu {
             }
         }
         // 이름에 해당하는 메뉴가 없을 경우 예외처리 또는 기본값 반환
-        throw new IllegalArgumentException("Invalid menu name: " + name);
+        throw new IllegalArgumentException("[ERROR] 메뉴판에 존재하지 않는 메뉴입니다 (" + name + ")");
     }
     public static String getCategoryByName(String name) {
         for (Menu menu : Menu.values()) {
@@ -50,14 +50,6 @@ public enum Menu {
             }
         }
         // 이름에 해당하는 카테고리가 없을 경우 예외처리 또는 기본값 반환
-        throw new IllegalArgumentException("Invalid menu name: " + name);
-    }
-    public static boolean checkRightName(String name) {
-        for (Menu menu : Menu.values()) {
-            if (menu.getName().equals(name)) {
-                return true;
-            }
-        }
-        return false;
+        throw new IllegalArgumentException("[ERROR] 메뉴판에 존재하지 않는 메뉴입니다 (" + name + ")");
     }
 }
