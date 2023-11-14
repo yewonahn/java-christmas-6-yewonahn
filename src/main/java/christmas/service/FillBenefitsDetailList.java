@@ -1,44 +1,44 @@
 package christmas.service;
 
+import christmas.model.CustomerInputInfo;
 import christmas.model.EachBenefitDetail;
 
 import java.util.List;
 
-import static christmas.controller.ChristmasController.customerInputInfo;
 import static christmas.enums.EventName.*;
 
 public class FillBenefitsDetailList {
-    public static void christmasDDay(List<EachBenefitDetail> benefitDetails) {
+    public static void christmasDDay(CustomerInputInfo customerInputInfo, List<EachBenefitDetail> benefitDetails) {
         if(customerInputInfo.checkChristmasDDay()) {
-            int benefitPrice = CalculateBenefitAmount.christmasDDay(customerInputInfo);
+            int benefitPrice = CalculatePrice.christmasDDayBenefit(customerInputInfo);
             EachBenefitDetail eachBenefitDetail = new EachBenefitDetail(CHRISTMAS_D_DAY.getEventName(), benefitPrice);
             benefitDetails.add(eachBenefitDetail);
         }
     }
-    public static void weekday(List<EachBenefitDetail> benefitDetails) {
+    public static void weekday(CustomerInputInfo customerInputInfo, List<EachBenefitDetail> benefitDetails) {
         if(customerInputInfo.checkWeekday()) {
-            int benefitPrice = CalculateBenefitAmount.weekday(customerInputInfo);
+            int benefitPrice = CalculatePrice.weekdayBenefit(customerInputInfo);
             EachBenefitDetail eachBenefitDetail = new EachBenefitDetail(WEEKDAY.getEventName(), benefitPrice);
             benefitDetails.add(eachBenefitDetail);
         }
     }
-    public static void weekend(List<EachBenefitDetail> benefitDetails) {
+    public static void weekend(CustomerInputInfo customerInputInfo, List<EachBenefitDetail> benefitDetails) {
         if(customerInputInfo.checkWeekend()) {
-            int benefitPrice = CalculateBenefitAmount.weekend(customerInputInfo);
+            int benefitPrice = CalculatePrice.weekendBenefit(customerInputInfo);
             EachBenefitDetail eachBenefitDetail = new EachBenefitDetail(WEEKEND.getEventName(), benefitPrice);
             benefitDetails.add(eachBenefitDetail);
         }
     }
-    public static void specialDay(List<EachBenefitDetail> benefitDetails) {
+    public static void specialDay(CustomerInputInfo customerInputInfo, List<EachBenefitDetail> benefitDetails) {
         if(customerInputInfo.checkSpecialDay()) {
-            int benefitPrice = CalculateBenefitAmount.specialDay(customerInputInfo);
+            int benefitPrice = CalculatePrice.specialDayBenefit(customerInputInfo);
             EachBenefitDetail eachBenefitDetail = new EachBenefitDetail(SPECIAL_DAY.getEventName(), benefitPrice);
             benefitDetails.add(eachBenefitDetail);
         }
     }
-    public static void present(List<EachBenefitDetail> benefitDetails) {
+    public static void present(CustomerInputInfo customerInputInfo, List<EachBenefitDetail> benefitDetails) {
         if(customerInputInfo.checkPresent()) {
-            int benefitPrice = CalculateBenefitAmount.present(customerInputInfo);
+            int benefitPrice = CalculatePrice.presentBenefit(customerInputInfo);
             EachBenefitDetail eachBenefitDetail = new EachBenefitDetail(PRESENT.getEventName(), benefitPrice);
             benefitDetails.add(eachBenefitDetail);
         }
