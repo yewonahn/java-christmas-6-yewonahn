@@ -1,4 +1,4 @@
-package christmas.util;
+package christmas.service;
 
 import christmas.model.Order;
 
