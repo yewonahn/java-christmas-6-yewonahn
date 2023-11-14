@@ -1,4 +1,4 @@
-package christmas.service;
+package christmas.domain;
 
 import christmas.model.CustomerInputInfo;
 import christmas.model.Order;
