@@ -1,5 +1,7 @@
 package christmas.enums;
 
+import static christmas.enums.ErrorMessage.ORDER_ERROR_MSG;
+
 public enum Menu {
 
     SOUP("양송이수프", 6000, "<애피타이저>"),
@@ -34,14 +36,14 @@ public enum Menu {
     public String getCategory() {
         return category;
     }
-    public static int getPriceByName(String name) {
+    public static int getPriceByName(String name) throws IllegalArgumentException {
         for (Menu menu : Menu.values()) {
             if (menu.getName().equals(name)) {
                 return menu.getPrice();
             }
         }
         // 이름에 해당하는 메뉴가 없을 경우 예외처리 또는 기본값 반환
-        throw new IllegalArgumentException("[ERROR] 메뉴판에 존재하지 않는 메뉴입니다 (" + name + ")");
+        throw new IllegalArgumentException(ORDER_ERROR_MSG.getErrorMessage());
     }
     public static String getCategoryByName(String name) {
         for (Menu menu : Menu.values()) {
@@ -50,6 +52,6 @@ public enum Menu {
             }
         }
         // 이름에 해당하는 카테고리가 없을 경우 예외처리 또는 기본값 반환
-        throw new IllegalArgumentException("[ERROR] 메뉴판에 존재하지 않는 메뉴입니다 (" + name + ")");
+        throw new IllegalArgumentException(ORDER_ERROR_MSG.getErrorMessage());
     }
 }
