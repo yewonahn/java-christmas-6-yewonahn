@@ -1,7 +1,7 @@
 package christmas.controller;
 
 import christmas.model.Order;
-import christmas.service.MakeOrders;
+import christmas.domain.MakeOrders;
 
 import java.util.List;
 

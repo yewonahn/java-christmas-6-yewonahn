@@ -34,9 +34,9 @@ public class ChristmasController {
     public static void createInfoClass(List<Order> orders, int visitDate) {
         customerInputInfo = new CustomerInputInfo(orders, visitDate);
 
-        List<EachBenefitDetail> benefitDetails = setCustomerEventInfo(customerInputInfo);
-        int totalBenefitPrice = setTotalBenefitPrice(customerInputInfo);
-        int totalPaymentPriceAfterDiscount = setTotalPaymentPriceAfterDiscount(customerInputInfo);
+        List<EachBenefitDetail> benefitDetails = setCustomerEventInfo();
+        int totalBenefitPrice = setTotalBenefitPrice();
+        int totalPaymentPriceAfterDiscount = setTotalPaymentPriceAfterDiscount();
 
         customerEventInfo = new CustomerEventInfo(benefitDetails, totalBenefitPrice, totalPaymentPriceAfterDiscount);
     }
