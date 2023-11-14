@@ -35,10 +35,16 @@ public class CheckValidation {
     }
     public static void checkMenuValid(List<Order> orders) {
         for(Order order : orders) {
-            if(! Menu.checkRightName(order.getOrderMenu())) {
-                throw new IllegalArgumentException();
+            checkRightName(order.getOrderMenu());
+        }
+    }
+    public static void checkRightName(String name) {
+        for (Menu menu : Menu.values()) {
+            if (menu.getName().equals(name)) {
+                return;
             }
         }
+        throw new IllegalArgumentException();
     }
 
     public static void checkMenuDuplication(List<Order> orders) {
