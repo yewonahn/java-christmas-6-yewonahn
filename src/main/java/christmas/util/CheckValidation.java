@@ -7,10 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static christmas.controller.InputController.inputOrderMenu;
-import static christmas.enums.ErrorMessage.MAX_MENU_ERROR_MSG;
-import static christmas.enums.ErrorMessage.ONLY_DRINK_ERROR_MSG;
-import static christmas.util.CheckRestrictions.maxAmountOfMenu;
-import static christmas.util.CheckRestrictions.orderOnlyDrink;
+import static christmas.enums.ErrorMessage.*;
+import static christmas.domain.CheckRestrictions.maxAmountOfMenu;
+import static christmas.domain.CheckRestrictions.orderOnlyDrink;
 
 public class CheckValidation {
     public static void checkDateType(String stringVisitDate) {
@@ -59,12 +58,12 @@ public class CheckValidation {
     }
     public static void checkDrinkConstruction(List<Order> orders) {
         if(! orderOnlyDrink(orders)) {
-            throw new IllegalArgumentException(ONLY_DRINK_ERROR_MSG.getErrorMessage());
+            throw new IllegalArgumentException(ORDER_ERROR_MSG.getErrorMessage());
         }
     }
     public static void checkAmountOfMenuConstruction(List<Order> orders) {
         if(! maxAmountOfMenu(orders)) {
-            throw new IllegalArgumentException(MAX_MENU_ERROR_MSG.getErrorMessage());
+            throw new IllegalArgumentException(ORDER_ERROR_MSG.getErrorMessage());
         }
     }
     public static List<Order> checkConstructions(List<Order> orders) {
