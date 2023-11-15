@@ -63,4 +63,21 @@ public class CheckValidationTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(ErrorMessage.ORDER_ERROR_MSG.getErrorMessage());
     }
+    @Test
+    void 예외상황_메뉴판에_없는_메뉴_주문() {
+        List<Order> invalidOrders = Arrays.asList(
+                new Order("메뉴판에없는메인", 2),
+                new Order("메뉴판에없는디저트", 1)
+        );
+
+        assertThatThrownBy(() -> CheckValidation.checkMenuValid(invalidOrders))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
+    @Test
+    void 예외상황_주어진_형식과_다르게_입력() {
+        String[] invalidPairs = {"티본스테이크", "크리스마스파스타_2"};
+
+        assertThatThrownBy(() -> CheckValidation.checkOrderForm(invalidPairs))
+                .isInstanceOf(IllegalArgumentException.class);
+    }
 }
