@@ -28,16 +28,29 @@ public class InputController {
 
     public static List<Order> inputOrderMenu() {
         String[] pairs = readLine().split(",");
-        List<Order> orders = MakeOrders.make(pairs);
-
         try {
-            checkMenuValid(orders);
-            checkMenuDuplication(orders);
+            checkOrderForm(pairs);
         } catch (IllegalArgumentException e) {
             System.out.println(ORDER_ERROR_MSG.getErrorMessage());
             return inputOrderMenu();
         }
 
-        return checkConstructions(orders);
+        List<Order> orders = createOrders(pairs);
+        return orders;
+    }
+
+    private static List<Order> createOrders(String[] pairs) {
+        List<Order> orders = MakeOrders.make(pairs);
+
+        try {
+            checkMenuValid(orders);
+            checkMenuDuplication(orders);
+            checkConstructions(orders);
+        } catch (IllegalArgumentException e) {
+            System.out.println(ORDER_ERROR_MSG.getErrorMessage());
+            return inputOrderMenu();
+        }
+
+        return orders;
     }
 }
