@@ -32,6 +32,21 @@ public class CheckValidation {
             throw new IllegalArgumentException();
         }
     }
+    public static void checkOrderForm(String[] pairs) {
+        for (String pair : pairs) {
+            validatePair(pair);
+        }
+    }
+    private static void validatePair(String pair) {
+        try {
+            String[] parts = pair.split("-");
+            if (parts.length != 2) {
+                throw new IllegalArgumentException();
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new IllegalArgumentException();
+        }
+    }
     public static void checkMenuValid(List<Order> orders) {
         for(Order order : orders) {
             checkRightName(order.getOrderMenu());
